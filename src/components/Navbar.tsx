@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Github, Linkedin, Mail, Download } from "lucide-react";
 
-const CV_URL = "/cv.pdf"; // replace with real CV link
+const CV_URL =
+  "https://drive.google.com/drive/folders/1HR_NPCBh_i21mdg2h8VPaarK-2vVjohv?usp=sharing";
 const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://www.linkedin.com/";
 const EMAIL = "mailto:hello@example.com";
