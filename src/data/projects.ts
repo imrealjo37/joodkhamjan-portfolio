@@ -12,7 +12,7 @@ import mersadImage from "../assets/mersad.png";
 import newsNlpImage from "../assets/News_nlp.png";
 import orbImage from "../assets/orb.png";
 import signImage from "../assets/sign.png";
-import marioImage from "../assets/mario.png";
+import marioImage from "../assets/Mario.png";
 import rssImage from "../assets/rss.png";
 
 export type Project = {
