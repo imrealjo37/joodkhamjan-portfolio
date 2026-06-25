@@ -7,8 +7,10 @@ import {
   AlertCircle,
   Wrench,
   Rocket,
-  Workflow,
-  Image as ImageIcon,
+  Github,
+  ExternalLink,
+  FileText,
+  Play,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { NeuralBackground } from "@/components/NeuralBackground";
@@ -160,24 +162,39 @@ function ProjectPage() {
           </div>
         </div>
       </section>
-
       {/* METRICS BAR */}
       {project.metrics && project.metrics.length > 0 && (
         <section className="mx-auto max-w-5xl px-4 pb-10">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {project.metrics.map((metric) => (
-              <div key={metric.label} className="glass-card p-5 text-center">
-                <div className="font-display text-3xl font-bold text-primary">
-                  {metric.value}
-                </div>
-                <div className="mt-2 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
+          <div
+            className={`grid gap-5 ${
+              project.metrics.length === 4
+                ? "sm:grid-cols-2 lg:grid-cols-4"
+                : project.metrics.length === 3
+                  ? "md:grid-cols-3"
+                  : project.metrics.length === 2
+                    ? "sm:grid-cols-2"
+                    : "grid-cols-1"
+            }`}
+          >
+      {project.metrics.map((metric) => (
+        <div
+          key={metric.label}
+          className="glass-card flex min-h-[155px] items-center justify-center p-6 text-center"
+        >
+          <div>
+            <div className="font-sans text-4xl font-bold tracking-tight text-primary">
+              {metric.value}
+            </div>
+
+            <div className="mt-3 text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              {metric.label}
+            </div>
           </div>
-        </section>
-      )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}
 
 
       {/* CONTENT SECTIONS FROM DATA */}
@@ -189,19 +206,41 @@ function ProjectPage() {
                 <h2 className="font-display text-3xl font-semibold text-gradient">
                   {section.title}
                 </h2>
-
                 {section.body && (
-                  <div className="mt-5 space-y-4">
-                    {section.body.map((paragraph) => (
-                      <p
-                        key={paragraph}
-                        className="text-base leading-relaxed text-muted-foreground md:text-lg"
-                      >
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                )}
+  <div className="mt-5 space-y-4">
+    {section.body.map((paragraph) => {
+      const hasLabel = paragraph.includes(":");
+
+      if (!hasLabel) {
+        return (
+          <p
+            key={paragraph}
+            className="text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            {paragraph}
+          </p>
+        );
+      }
+
+      const [label, ...rest] = paragraph.split(":");
+      const description = rest.join(":").trim();
+
+      return (
+        <p
+          key={paragraph}
+          className="text-base leading-relaxed text-muted-foreground md:text-lg"
+        >
+          <span className="font-bold text-foreground">
+            {label}:
+          </span>{" "}
+          {description}
+        </p>
+      );
+    })}
+  </div>
+)}
+
+
 
                 {section.bullets && (
                   <ul className="mt-6 space-y-3">
@@ -233,19 +272,56 @@ function ProjectPage() {
           <StackedAccordion items={project.stackedCards} />
         </section>
       )}
-      
-      {project.github && (
-  <section className="relative mx-auto max-w-5xl px-4 py-10 text-center">
-    <a
-      href={project.github}
-      target="_blank"
-      rel="noreferrer"
-      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-white/[0.08]"
-    >
-      View on GitHub
-    </a>
+      {/* PROJECT LINKS */}
+{project.links && project.links.length > 0 && (
+  <section className="relative mx-auto max-w-5xl px-4 py-12">
+    <div className="glass-card p-6 sm:p-8">
+      <div className="mb-6 text-center">
+        <p className="text-xs uppercase tracking-[0.22em] text-primary/70">
+          EXPLORE MINDWATCH
+        </p>
+
+        <h2 className="mt-3 font-display text-2xl font-semibold text-gradient">
+          Where Engineering Meets Research
+        </h2>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-3">
+        {project.links.map((link) => {
+          const Icon =
+            link.type === "github"
+              ? Github
+              : link.type === "paper"
+                ? FileText
+                : Play;
+
+          return (
+            <a
+              key={`${link.label}-${link.href}`}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex min-w-[210px] items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10"
+            >
+              <Icon
+                size={18}
+                className="text-primary transition-transform duration-300 group-hover:scale-110"
+              />
+
+              <span>{link.label}</span>
+
+              <ExternalLink
+                size={13}
+                className="text-muted-foreground"
+              />
+            </a>
+          );
+        })}
+      </div>
+    </div>
   </section>
 )}
+      
       {/* RELATED */}
       <section className="relative mx-auto max-w-6xl px-4 py-20">
         <p className="text-xs uppercase tracking-[0.25em] text-primary/80">More work</p>

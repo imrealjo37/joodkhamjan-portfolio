@@ -176,7 +176,7 @@
   backdrop-filter: blur(20px) saturate(140%);
   border: 1px solid oklch(0.75 0.05 280 / 0.14);
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.05);
 }
 
 @utility text-gradient {

@@ -5,6 +5,7 @@ import { NeuralBackground } from "@/components/NeuralBackground";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 import { ArrowUpRight } from "lucide-react";
+import { FileText } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,7 +42,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CV_URL = "https://drive.google.com/drive/folders/1HR_NPCBh_i21mdg2h8VPaarK-2vVjohv?usp=sharing";
+const CV_URL = "/cv.pdf";
 const GITHUB_URL = "https://github.com/imrealjo37";
 const LINKEDIN_URL = "www.linkedin.com/in/jood-khamjan-bb91aa31a";
 const EMAIL = "mailto:hello@example.com";
@@ -106,11 +107,12 @@ function Index() {
               <Sparkles size={16} /> View Projects
             </a>
             <a
-              href={CV_URL}
-              download
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-white/[0.08]"
+            href={CV_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-white/[0.08]"
             >
-              <Download size={16} /> Download CV
+            <FileText size={16} /> View CV
             </a>
           </div>
 
@@ -201,26 +203,35 @@ function Index() {
     </div>
   </div>
 </section>
-       {/* CONTACT */}
-      <section id="contact" className="relative py-32 md:py-44 border-t border-white/5">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground mb-6">
-            Let's build something
-          </div>
-          <h2 className="font-display text-5xl md:text-7xl text-foreground leading-[1.05] mb-10">
-            Have a project that needs
-            <br />
-            <span className="text-gradient-lavender italic">careful intelligence?</span>
-          </h2>
-          <a
-            href="mailto:hello@joodkhamjan.com"
-            className="inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground transition-smooth hover:opacity-90 shadow-glow"
-          >
-            hello@joodkhamjan.com
-            <ArrowUpRight className="h-5 w-5" />
-          </a>
-        </div>
-      </section>
+
+{/* CONTACT */}
+<section
+  id="contact"
+  className="relative border-t border-white/5 py-32 md:py-40"
+>
+  <div className="mx-auto max-w-4xl px-6 text-center">
+    <div className="mb-6 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+      Open to Opportunities
+    </div>
+
+    <h2 className="mb-10 font-display text-5xl leading-[1.05] text-foreground md:text-7xl">
+      Let&apos;s build something
+      <br />
+      <span className="italic text-gradient-lavender">
+        meaningful together.
+      </span>
+    </h2>
+
+    <a
+      href="mailto:khamjanjood.ai@gmail.com"
+      className="inline-flex items-center gap-3 rounded-full bg-[image:var(--gradient-primary)] px-8 py-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow-soft)] transition-all duration-300 hover:-translate-y-1"
+    >
+      Let&apos;s Connect
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
+
 
       <footer className="border-t border-white/5 py-10">
         <div className="mx-auto max-w-7xl px-6 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
