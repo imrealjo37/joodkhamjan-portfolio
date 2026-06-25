@@ -42,7 +42,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CV_URL = "/cv.pdf";
+const CV_URL =
+  "https://drive.google.com/file/d/1XP_mqfTVji2O0_JZ6Fnad6V9ctwM7DWm/view?usp=sharing";
 const GITHUB_URL = "https://github.com/imrealjo37";
 const LINKEDIN_URL = "www.linkedin.com/in/jood-khamjan-bb91aa31a";
 const EMAIL = "mailto:hello@example.com";
