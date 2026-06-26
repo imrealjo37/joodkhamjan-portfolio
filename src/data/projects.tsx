@@ -14,6 +14,7 @@ import orbImage from "../assets/orb.png";
 import signImage from "../assets/sign.png";
 import marioImage from "../assets/mario.png";
 import rssImage from "../assets/rss.png";
+import eduLaptopInterfaceImage from "../assets/eduLaptopInterfaceImage.png";
 
 export type Project = {
   slug: string;
@@ -198,62 +199,125 @@ links: [
 {slug: "edulaptop-advisor",
   title: "EduLaptop Advisor",
   image: eduLaptopImage,
-  description:
-    "Hybrid RAG system that recommends laptops based on academic needs, technical constraints, and budget using grounded LLM generation.",
-  category: "Education AI",
-  year: "2024",
-  tags: ["RAG", "LLM", "Recommendation System", "Streamlit", "NLP"],
+
+description:
+  "AI-powered laptop recommendations for students based on needs and budget.",
+  category: "Generative AI",
+  year: "2026",
+
+  tags: [
+    "RAG",
+    "Llama 3.3",
+    "TF-IDF",
+    "Groq API",
+    "Streamlit",
+    "NLP",
+  ],
+
   featured: true,
   accent: "from-emerald-300 to-purple-400",
 
   metrics: [
-    { value: "0.83", label: "Average RAGAS Score" },
-    { value: "0.98", label: "Faithfulness Score" },
-    { value: "+20.3%", label: "RAGAS Improvement" },
-    { value: "900+", label: "Laptop Records Indexed" },
+    { value: "0.83", label: "Average Evaluation Score" },
+    { value: "0.98", label: "Best Faithfulness Score" },
+    { value: "+20.3%", label: "Performance Improvement" },
+    { value: "991", label: "Laptop Records Indexed" },
   ],
-
-
-
-
- sections: [
+sections: [
   {
     title: "Project Overview",
     body: [
-      "Built a hybrid RAG system that recommends laptops based on academic needs, budget, and technical requirements.",
+      "EduLaptop Advisor is an intelligent recommendation system designed to help students choose laptops that match their academic field, technical needs, and budget.",
+      "It provides personalized recommendations using real laptop specifications and prices converted to Saudi Riyal.",
     ],
   },
+
   {
     title: "The Problem",
     body: [
-      "Students often struggle to compare laptop specifications and identify devices that match their academic use cases.",
+      "Choosing the right laptop can be overwhelming for students who need to compare processors, GPUs, memory, storage, operating systems, and prices across hundreds of available devices.",
+      "Most shopping platforms provide generic product listings instead of recommendations tailored to academic use cases such as programming, artificial intelligence, engineering, or online learning.",
     ],
   },
+
   {
     title: "The Solution",
     body: [
-      "EduLaptop Advisor combines smart filtering, TF-IDF retrieval, and grounded LLM generation to return relevant recommendations with prices in Saudi Riyal.",
+      "The system uses a hybrid RAG pipeline that combines natural-language understanding, structured constraint extraction, smart filtering, and information retrieval.",
+      "It extracts requirements such as budget, RAM, GPU type, processor tier, operating system, and storage capacity before ranking the most relevant laptop records.",
+      "The Top-5 retrieved laptops are passed to Llama 3.3 70B, which generates a structured comparison and recommends the best option using only the retrieved specifications.",
     ],
   },
+
+{
+  title: "Key Results",
+  bullets: [
+    "Average evaluation score improved from 0.69 to 0.83.",
+    "Achieved up to 1.00 Context Precision and 0.98 Faithfulness.",
+    "Indexed 991 laptops from 26 brands with prices converted to Saudi Riyal.",
+  ],
+},
+
   {
-    title: "Key Results",
+    title: "Models and Technologies",
     body: [
-      "Improved the average RAGAS score from 0.69 to 0.83, achieving up to 1.00 Context Precision and 0.98 Faithfulness.",
+      "Hybrid RAG Pipeline: Combined query expansion, smart filtering, TF-IDF retrieval, cosine-similarity ranking, and grounded response generation.",
+      "Retrieval Model: Used TF-IDF with unigram and bigram features to represent laptop descriptions and user queries as numerical vectors.",
+      "Ranking Strategy: Applied Cosine Similarity to rank filtered candidates and retrieve the Top-5 most relevant laptop records.",
+      "Large Language Model: Used Llama 3.3 70B through the Groq API to generate recommendations grounded exclusively in retrieved laptop data.",
+      "Constraint Extraction: Used the Groq API to identify budget, RAM, GPU, processor, operating system, and storage requirements from natural-language queries.",
+      "Evaluation Framework: Implemented RAGAS-inspired metrics to measure Context Precision, Answer Relevancy, Faithfulness, and overall recommendation quality.",
+    ],
+    bullets: [
+      "Python",
+      "Llama 3.3 70B",
+      "Groq API",
+      "TF-IDF",
+      "Cosine Similarity",
+      "Streamlit",
+      "Pandas",
+      "Scikit-learn",
     ],
   },
+  ],
+stackedCards: [
   {
-    title: "Models & Technologies",
-    body: [
-      "Llama 3.3 70B was used to generate grounded recommendations based only on the retrieved laptop data.",
-      "TF-IDF and Cosine Similarity powered the retrieval layer by ranking the most relevant laptop records for each query.",
-      "Groq API handled structured constraint extraction and fast LLM inference.",
-      "RAGAS evaluated Context Precision, Answer Relevancy, and Faithfulness.",
-      "Streamlit was used to build the interactive interface, while Python, scikit-learn, and Pandas supported preprocessing, filtering, and retrieval.",
-    ],
+    id: "project-interface",
+    title: "Interactive Recommendation Interface",
+    description: "",
+    iconColor: "#93c5fd",
+    media: {
+      type: "image",
+      src: eduLaptopInterfaceImage,
+      alt: "EduLaptop Advisor interface",
+    },
+    showDescription: false,
+  },
+  {
+    id: "rag-pipeline",
+    title: "Hybrid RAG Pipeline",
+    description: "",
+    iconColor: "#c4b5fd",
+    visualKey: "edulaptop-rag-pipeline",
+    showDescription: false,
+  },
+  {
+    id: "evaluation-improvement",
+    title: "Evaluation Improvement",
+    description: "",
+    iconColor: "#abf8c7",
+    visualKey: "edulaptop-evaluation",
+    showDescription: false,
   },
 ],
 
-
+links: [
+  {
+    label: "GitHub Repository",
+    href: "https://github.com/imrealjo37/EduLaptop-Advisor",
+    type: "github",
+  },
+]
 },
   {slug: "mersad",
     title: "Mersad",
@@ -379,17 +443,107 @@ links: [
     },
   ],
 },
- 
   {slug: "arabic-news-nlp",
+
     title: "Arabic News NLP System",
-      image: newsNlpImage ,
+
+    image: newsNlpImage,
+
     description:
-      "Arabic NLP system for news classification, summarisation, and structured 5W information extraction.",
+      "A unified Arabic NLP system for news classification, summarization, and 5W extraction.",
+
     category: "Arabic NLP",
-    year: "2024",
-    tags: ["Arabic NLP", "Classification", "Summarization", "Information Extraction"],
+
+    year: "2026",
+
+    tags: [
+      "Arabic NLP",
+      "Transformers",
+      "Text Classification",
+      "Summarization",
+      "Information Extraction",
+    ],
+
     featured: true,
+
     accent: "from-violet-400 to-fuchsia-400",
+
+    metrics: [
+      { value: "98%", label: "Classification Accuracy" },
+      { value: "0.98", label: "Macro F1 Score" },
+      { value: "0.38", label: "Best ROUGE-1 Score" },
+      { value: "3", label: "Parallel NLP Tasks" },
+    ],
+
+    sections: [
+      {
+        title: "Project Overview",
+        body: [
+          "Unified Arabic News Understanding: The system analyzes a single article through three parallel tasks: topic classification, abstractive summarization, and structured 5W information extraction.", 
+          "Each model processes the same preprocessed Arabic article independently, allowing the system to generate a summary, predict the news category, and extract key event details within one integrated framework.", ],
+      },
+
+      {
+        title: "The Problem",
+        body: [
+          "Arabic news analysis is challenging because of the language’s rich morphology, ambiguity, and limited availability of high-quality task-specific datasets.",
+          "Existing Arabic news tools are often fragmented, while public summarization datasets may contain noisy, inconsistent, or overly short summaries that limit model performance.",
+        ],
+      },
+
+      {
+        title: "The Solution",
+        body: [
+          "The system uses a parallel multi-task architecture where AraT5, CAMeLBERT-MSA, and Gemini independently process the same cleaned news article.",
+          "AraT5 generates a three-sentence abstractive summary, CAMeLBERT predicts the article topic, and Gemini extracts Who, What, When, Where, and Source in a validated JSON structure.",
+          "To improve summarization quality, the original noisy references in the Arabic News dataset were replaced with consistent summaries generated using Gemini 2.5 Flash.",
+        ],
+      },
+
+      {
+        title: "Key Results",
+        bullets: [
+          "CAMeLBERT achieved 98% accuracy and a 0.98 Macro F1 score.",
+          "The enhanced summarization dataset achieved 0.380 ROUGE-1, 0.231 ROUGE-2, and 0.370 ROUGE-L.",
+          "The proposed summarizer outperformed models trained on XL-Sum and AsDs.",
+          "The 5W module produced consistent JSON outputs while avoiding unsupported details.",
+        ],
+      },
+
+      {
+        title: "Models and Technologies",
+        body: [
+          "Parallel Multi-Task Architecture: Processed the same Arabic article independently across classification, summarization, and information-extraction modules.",
+          "Abstractive Summarization: Fine-tuned AraT5v2-base-1024 on an enhanced Arabic News dataset with high-quality Gemini-generated summaries.",
+          "Topic Classification: Fine-tuned CAMeLBERT-MSA and compared its performance against a BiLSTM baseline.",
+          "Structured Information Extraction: Used Gemini with schema-guided prompting to extract the 5W event elements in validated JSON format.",
+          "Data-Centric Optimization: Improved model performance by prioritizing clean and consistent supervision over larger but noisier datasets.",
+        ],
+
+        bullets: [
+          "Python",
+          "PyTorch",
+          "Transformers",
+          "AraT5",
+          "CAMeLBERT",
+          "Gemini 2.5 Flash",
+          "Pandas",
+          "Scikit-learn",
+        ],
+      },
+    ],
+  links: [
+    {
+      label: "GitHub Repository",
+      href:  "https://github.com/imrealjo37/Arabic-News-Understanding-System",
+      type: "github",
+    },
+    {
+      label: "View Research Papers",
+      href:  "https://drive.google.com/file/d/1aWdb6wTGZ7DfFh4iU4X5ipY2KXFLf5a6/view?usp=sharing",
+      type: "paper",
+    },
+  ],
 
   },
   {slug: "sign-language-recognition",

@@ -272,55 +272,92 @@ function ProjectPage() {
           <StackedAccordion items={project.stackedCards} />
         </section>
       )}
+
       {/* PROJECT LINKS */}
-{project.links && project.links.length > 0 && (
-  <section className="relative mx-auto max-w-5xl px-4 py-12">
-    <div className="glass-card p-6 sm:p-8">
-      <div className="mb-6 text-center">
-        <p className="text-xs uppercase tracking-[0.22em] text-primary/70">
-          EXPLORE MINDWATCH
-        </p>
+        {project.links && project.links.length > 0 && (
+          <section className="relative mx-auto max-w-5xl px-4 py-12">
+            <div className="glass-card p-6 sm:p-8">
+              <div className="mb-6 text-center">
+                <p className="text-xs uppercase tracking-[0.22em] text-primary/70">
+                  EXPLORE {project.title}
+                </p>
+                <h2 className="mt-3 font-display text-2xl font-semibold text-gradient">
+                  {(() => {
+                    const hasGitHub = project.links.some(
+                      (link) => link.type === "github",
+                    );
+                    const hasDemo = project.links.some(
+                      (link) => link.type === "demo",
+                    );
+                    const hasPaper = project.links.some(
+                      (link) => link.type === "paper",
+                    );
 
-        <h2 className="mt-3 font-display text-2xl font-semibold text-gradient">
-          Where Engineering Meets Research
-        </h2>
-      </div>
+                    if (hasGitHub && hasDemo && hasPaper) {
+                      return "The System Behind the Science";
+                    }
 
-      <div className="flex flex-wrap justify-center gap-3">
-        {project.links.map((link) => {
-          const Icon =
-            link.type === "github"
-              ? Github
-              : link.type === "paper"
-                ? FileText
-                : Play;
+                    if (hasGitHub && hasDemo) {
+                      return "From Source to Sandbox";
+                    }
 
-          return (
-            <a
-              key={`${link.label}-${link.href}`}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex min-w-[210px] items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10"
-            >
-              <Icon
-                size={18}
-                className="text-primary transition-transform duration-300 group-hover:scale-110"
-              />
+                    if (hasGitHub && hasPaper) {
+                      return "From Code to Research";
+                    }
 
-              <span>{link.label}</span>
+                    if (hasGitHub) {
+                      return "Behind the Build";
+                    }
 
-              <ExternalLink
-                size={13}
-                className="text-muted-foreground"
-              />
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-)}
+                    if (hasDemo) {
+                      return "Experience the Project";
+                    }
+
+                    if (hasPaper) {
+                      return "Discover the Science";
+                    }
+
+                    return "Explore the Project";
+                  })()}
+                </h2>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-3">
+                {project.links.map((link) => {
+                  const Icon =
+                    link.type === "github"
+                      ? Github
+                      : link.type === "paper"
+                        ? FileText
+                        : Play;
+
+                  return (
+                    <a
+                      key={`${link.label}-${link.href}`}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex min-w-[210px] items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-4 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-primary/10"
+                    >
+                      <Icon
+                        size={18}
+                        className="text-primary transition-transform duration-300 group-hover:scale-110"
+                      />
+
+                      <span>{link.label}</span>
+
+                      <ExternalLink
+                        size={13}
+                        className="text-muted-foreground"
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
       
       {/* RELATED */}
       <section className="relative mx-auto max-w-6xl px-4 py-20">
